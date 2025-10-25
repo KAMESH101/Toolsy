@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Checkout - Toolsy</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <style>
+    .checkout-container {
+      max-width: 700px;
+      background: white;
+      margin: 2em auto;
+      padding: 2em;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    .checkout-container h2 {
+      text-align: center;
+      color: #004d40;
+      margin-bottom: 1em;
+    }
+    .checkout-container label {
+      display: block;
+      margin-top: 1em;
+      font-weight: 600;
+      color: #00695c;
+    }
+    .checkout-container input,
+    .checkout-container select {
+      width: 100%;
+      padding: 0.6em;
+      margin-top: 0.3em;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      font-size: 1em;
+    }
+    .checkout-container button {
+      display: block;
+      width: 100%;
+      background: #00796b;
+      color: white;
+      border: none;
+      padding: 0.8em;
+      margin-top: 1.5em;
+      border-radius: 4px;
+      font-weight: bold;
+      font-size: 1.1em;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .checkout-container button:hover {
+      background: #004d40;
+    }
+    .back-link {
+      display: inline-block;
+      margin-top: 1em;
+      color: #00796b;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .back-link:hover {
+      text-decoration: underline;
+    }
+    .product-summary {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.5em;
+      border: 1px solid #ddd;
+      padding: 1em;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+    .product-summary img {
+      max-width: 120px;
+      height: auto;
+      margin-right: 1em;
+    }
+    .product-summary h3 {
+      color: #004d40;
+      margin-bottom: 0.3em;
+    }
+    .product-summary p {
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+
+<header class="toolsy-header">
+  <img src="Images/logo.png" alt="Toolsy Logo" class="toolsy-logo">
+  <span class="toolsy-title">Toolsy</span>
+  <a href="index.html" class="nav-link">Home</a>
+</header>
+
+  <main>
+    <div class="checkout-container">
+      <h2>Payment & Shipping Details</h2>
+
+      <!-- Product summary -->
+      <div id="productSummary" class="product-summary" style="display:none;">
+        <img id="summaryImg" src="" alt="Product" />
+        <div>
+          <h3 id="summaryTitle"></h3>
+          <p id="summaryQuantity"></p>
+          <p id="summaryTotalPrice"></p>
+        </div>
+      </div>
+
+      <form id="paymentForm">
+        <label for="fullName">Full Name</label>
+        <input type="text" id="fullName" name="fullName" placeholder="John Doe" required />
+
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="you@example.com" required />
+
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone" placeholder="9876543210" required />
+
+        <label for="address">Shipping Address</label>
+        <input type="text" id="address" name="address" placeholder="123 Main Street" required />
+
+        <label for="city">City</label>
+        <input type="text" id="city" name="city" required />
+
+        <label for="postalCode">Postal Code</label>
+        <input type="text" id="postalCode" name="postalCode" required />
+
+        <label for="country">Country</label>
+        <select id="country" name="country" required>
+          <option value="">Select Country</option>
+          <option value="India">India</option>
+          <option value="USA">United States</option>
+          <option value="UK">United Kingdom</option>
+          <option value="Aus">Australia</option>
+        </select>
+
+        <label for="cardNumber">Card Number</label>
+        <input type="text" id="cardNumber" name="cardNumber" placeholder="xxxx-xxxx-xxxx-xxxx" required />
+
+        <label for="expiry">Expiry Date</label>
+        <input type="month" id="expiry" name="expiry" required />
+
+        <label for="cvv">CVV</label>
+        <input type="password" id="cvv" name="cvv" placeholder="123" required />
+
+        <button type="submit">Pay Now</button>
+      </form>
+
+      <a href="index.html" class="back-link">← Back to Shop</a>
+    </div>
+    <section id="aboutUs">
+      <h2>About Us</h2>
+      <p>
+        Welcome to Hardware Shop Online — your trusted partner for quality hardware supplies and tools.
+        We pride ourselves on providing durable, reliable products ranging from fasteners, power tools,
+        plumbing materials, to safety gear and gardening essentials.
+      </p>
+      <p>
+        Our mission is to make high-quality hardware products easily accessible online with fast delivery
+        and dedicated customer support.
+      </p>
+    </section>
+  </main>
+  
+
+  <script>
+    const products = [
+      { id: 1, title: "High-Grade Steel Nuts", price: 25, image: "Images/High grade steel nuts.png" },
+      { id: 2, title: "Multi-purpose Hammer", price: 450, image: "Images/Multi-purpose hammer.png" },
+      { id: 3, title: "Electric Drill 20V", price: 3500, image: "Images/Electric drill 20 V.png" },
+    
+  { id: 4, title: "PVC Pipe 1 inch", price: 180, image: "Images/PVC Pipe 1 inch.png" },
+{ id: 5, title: "Premium Wall Paint (White)", price: 1200, image: "Images/Premium wall paint(white).png" },
+{ id: 6, title: "Concrete Mix 40kg", price: 500, image: "Images/Concrete mix 40 kg.png" },
+{ id: 7, title: "Copper Electrical Wire 10m", price: 800, image: "Images/copper electrical wire 10m.png" },
+{ id: 8, title: "Safety Work Gloves", price: 350, image: "Images/safety hand gloves.png" },
+{ id: 9, title: "Stainless Steel Door Handle", price: 400, image: "Images/stainless steel door handle.png" },
+{ id: 10, title: "Steel Curtain Rod", price: 750, image: "Images/Steel curtain Rod.png" },
+{ id: 11, title: "Stainless Steel Screws Pack", price: 150, image: "Images/Stainless screw pack.png" },
+{ id: 12, title: "Adjustable Wrench", price: 600, image: "Images/Adjustable wrench.png" },
+{ id: 13, title: "Cordless Circular Saw", price: 6000, image: "Images/cordless circular saw.png" },
+{ id: 14, title: "Faucet Mixer Tap", price: 1200, image: "Images/Faucet Tap mixer.png" },
+{ id: 15, title: "Wood Varnish 1L", price: 900, image: "Images/wood warnish 1L.png" },
+{ id: 16, title: "Wooden Lumber 2x4 inch", price: 350, image: "Images/wooden lumber2x4 inch.png" },
+{ id: 17, title: "Electrical Switch Board", price: 1500, image: "Images/electrical switch board.png" },
+{ id: 18, title: "Safety Helmet", price: 1100, image: "Images/safety helmet.png" },
+{ id: 19, title: "Cabinet Latch Set", price: 300, image: "Images/cabinet latch set.png" },
+{ id: 20, title: "Wall Mounted Hooks Pack", price: 250, image: "Images/wall mounted hook pack.png" }
+
+];
+
+    const params = new URLSearchParams(window.location.search);
+    const productId = parseInt(params.get("id"));
+    const quantity = parseInt(params.get("quantity")) || 1;
+    const product = products.find(p => p.id === productId);
+
+    if (product) {
+      const summary = document.getElementById("productSummary");
+      summary.style.display = "flex";
+      document.getElementById("summaryImg").src = product.image;
+      document.getElementById("summaryImg").alt = product.title;
+      document.getElementById("summaryTitle").textContent = product.title;
+      document.getElementById("summaryQuantity").textContent = `Quantity: ${quantity}`;
+      document.getElementById("summaryTotalPrice").textContent = `Total Price: ₹${(product.price * quantity).toFixed(2)}`;
+    }
+
+    document.getElementById("paymentForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      alert("Payment successful! Thank you for your purchase.");
+      window.location.href = "index.html";
+    });
+  </script>
+</body>
+</html>
+

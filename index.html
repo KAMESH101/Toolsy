@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Toolsy</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/png" href="images/logo.png">
+</head>
+<body>
+<header class="toolsy-header">
+  <div class="header-left">
+    <img src="Images/logo.png" alt="Toolsy Logo" class="toolsy-logo" style="display: inline";>
+    <span class="toolsy-title" style="display: inline;">Toolsy</span>
+  </div>
+  <a href="index.html" class="nav-link">Home</a>
+    <a href="login.html" class="nav-link">Login</a>
+  
+</header>
+
+
+<main>
+  <h2>Shop by Category</h2>
+  <nav id="categoryButtons" class="categories"></nav>
+
+  <section id="productsGrid" class="products-grid">
+    <!-- Products rendered dynamically -->
+  </section>
+
+  <section id="aboutUs">
+    <h2>About Us</h2>
+    <p>
+      Welcome to Hardware Shop Online — your trusted partner for quality
+      hardware supplies and tools. We pride ourselves on providing durable,
+      reliable products ranging from fasteners, power tools, plumbing materials,
+      to safety gear and gardening essentials.
+    </p>
+    <p>
+      Our mission is to make high-quality hardware products easily accessible
+      online with fast delivery and dedicated customer support.
+    </p>
+  </section>
+</main>
+
+<button id="btnCartToggle">Cart</button>
+
+<aside id="cartSidebar">
+  <button id="closeCartBtn" class="btn-close-cart">X</button>
+  <h3>Your Cart</h3>
+  <div id="cartItemsContainer"></div>
+  <h4>Total: ₹<span id="cartTotal">0.00</span></h4>
+</aside>
+
+<script src="script.js"></script>
+</body>
+</html>

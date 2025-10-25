@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Buy Product</title>
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    main {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      max-width: 400px;
+      margin: auto;
+    }
+    .product-image {
+      max-width: 100%;
+      height: auto;
+    }
+    .product-details {
+      margin-top: 20px;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      margin-bottom: 5px;
+    }
+    input[type="number"] {
+      width: 60px;
+      padding: 5px;
+    }
+    .total-price {
+      margin-top: 20px;
+      font-weight: bold;
+      font-size: 1.2em;
+    }
+    button {
+      margin-top: 30px;
+      padding: 10px 20px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header class="toolsy-header">
+  <img src="Images/logo.png" alt="Toolsy Logo" class="toolsy-logo">
+  <span class="toolsy-title">Toolsy</span>
+  <a href="index.html" class="nav-link">Home</a>
+</header>
+<main>
+  <h2>Buy Product</h2>
+  
+  <div id="productContainer">
+    <!-- Product info loaded dynamically -->
+  </div>
+  
+    
+  </main>
+<section id="aboutUs">
+      <h2>About Us</h2>
+      <p>
+        Welcome to Hardware Shop Online — your trusted partner for quality hardware supplies and tools.
+        We pride ourselves on providing durable, reliable products ranging from fasteners, power tools,
+        plumbing materials, to safety gear and gardening essentials.
+      </p>
+      <p>
+        Our mission is to make high-quality hardware products easily accessible online with fast delivery
+        and dedicated customer support.
+      </p>
+    </section>
+  <script>
+    const products = [
+      { id: 1, title: "High-Grade Steel Nuts", price: 25, description: "Durable steel nuts suitable for all projects.", image: "Images/High grade steel nuts.png" },
+      { id: 2, title: "Multi-purpose Hammer", price: 450, description: "Ergonomic hammer with rubber grip.", image: "Images/Multi-purpose hammer.png" },
+      { id: 3, title: "Electric Drill 20V", price: 3500, description: "Cordless drill ideal for home and professional use.", image: "Images/Electric drill 20 V.png" },
+     { id: 4, title: "PVC Pipe 1 inch", price: 180, image: "Images/PVC Pipe 1 inch.png" },
+{ id: 5, title: "Premium Wall Paint (White)", price: 1200, image: "Images/Premium wall paint(white).png" },
+{ id: 6, title: "Concrete Mix 40kg", price: 500, image: "Images/Concrete mix 40 kg.png" },
+{ id: 7, title: "Copper Electrical Wire 10m", price: 800, image: "Images/copper electrical wire 10m.png" },
+{ id: 8, title: "Safety Work Gloves", price: 350, image: "Images/safety hand gloves.png" },
+{ id: 9, title: "Stainless Steel Door Handle", price: 400, image: "Images/stainless steel door handle.png" },
+{ id: 10, title: "Steel Curtain Rod", price: 750, image: "Images/Steel curtain Rod.png" },
+{ id: 11, title: "Stainless Steel Screws Pack", price: 150, image: "Images/Stainless screw pack.png" },
+{ id: 12, title: "Adjustable Wrench", price: 600, image: "Images/Adjustable wrench.png" },
+{ id: 13, title: "Cordless Circular Saw", price: 6000, image: "Images/cordless circular saw.png" },
+{ id: 14, title: "Faucet Mixer Tap", price: 1200, image: "Images/Faucet Tap mixer.png" },
+{ id: 15, title: "Wood Varnish 1L", price: 900, image: "Images/wood warnish 1L.png" },
+{ id: 16, title: "Wooden Lumber 2x4 inch", price: 350, image: "Images/wooden lumber2x4 inch.png" },
+{ id: 17, title: "Electrical Switch Board", price: 1500, image: "Images/electrical switch board.png" },
+{ id: 18, title: "Safety Helmet", price: 1100, image: "Images/safety helmet.png" },
+{ id: 19, title: "Cabinet Latch Set", price: 300, image: "Images/cabinet latch set.png" },
+{ id: 20, title: "Wall Mounted Hooks Pack", price: 250, image: "Images/wall mounted hook pack.png" }
+
+    ];
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = parseInt(urlParams.get("id"));
+    const product = products.find(p => p.id === productId);
+
+    const container = document.getElementById("productContainer");
+
+    if (!product) {
+      container.innerHTML = "<p>Product not found.</p>";
+    } else {
+      container.innerHTML = `
+        <img class="product-image" src="${product.image}" alt="${product.title}" />
+        <div class="product-details">
+          <h3>${product.title}</h3>
+          <p>${product.description}</p>
+          <p>Price: ₹<span id="price">${product.price.toFixed(2)}</span></p>
+
+          <label for="quantity">Quantity:</label>
+          <input type="number" id="quantity" min="1" value="1" />
+
+          <div class="total-price">Total Price: ₹<span id="totalPrice">${product.price.toFixed(2)}</span></div>
+          <button id="btnCheckout">Proceed to Checkout</button>
+        </div>
+      `;
+
+      const quantityInput = document.getElementById("quantity");
+      const totalPriceSpan = document.getElementById("totalPrice");
+
+      quantityInput.addEventListener("input", () => {
+        let qty = parseInt(quantityInput.value);
+        if (isNaN(qty) || qty < 1) {
+          qty = 1;
+          quantityInput.value = qty;
+        }
+        const total = qty * product.price;
+        totalPriceSpan.textContent = total.toFixed(2);
+      });
+
+      document.getElementById("btnCheckout").addEventListener("click", () => {
+        const qty = parseInt(quantityInput.value);
+        window.location.href = `payment.html?id=${product.id}&quantity=${qty}`;
+      });
+    }
+  </script>
+
+</body>
+</html>
+
+
